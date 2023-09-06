@@ -25,7 +25,7 @@ async function onSubmit(e){
 
 //add to server 
 
-await axios.post(`https://crudcrud.com/api/19dbfd7f85d444a8a8d77781fe324b7d/dishdata`, { dishdata })
+await axios.post(`https://crudcrud.com/api/ad472ff541214d1db117a0e34d91634f/dishdata`, { dishdata })
   .then((res) => {
     console.log(`${res.data.dishdata.dishName} added`);
     console.log(res);
@@ -34,7 +34,7 @@ await axios.post(`https://crudcrud.com/api/19dbfd7f85d444a8a8d77781fe324b7d/dish
     console.error(err);
   });
   //print on browser by get 
-  axios.get(`https://crudcrud.com/api/19dbfd7f85d444a8a8d77781fe324b7d/dishdata`)
+  axios.get(`https://crudcrud.com/api/ad472ff541214d1db117a0e34d91634f/dishdata`)
   .then((res) => { 
     console.log(`data feched for printing`);
     showOutput(res);
@@ -55,7 +55,7 @@ function onEditorDelete(e){
 if (e.target && e.target.classList.contains("delbtn")){
 //remove from server 
 axios
-.delete(`https://crudcrud.com/api/19dbfd7f85d444a8a8d77781fe324b7d/dishdata/${btnId}`)
+.delete(`https://crudcrud.com/api/ad472ff541214d1db117a0e34d91634f/dishdata/${btnId}`)
 .then(res=>console.log(`This id : ${btnId} data deleted`))
 .catch(err=> console.error(err));
 //remove from browser
@@ -105,7 +105,7 @@ function showOutput(res){
 // PRINTING DATA WHEN CUSTOMER OPEN WEBSITE
 axios
 
-.get(`https://crudcrud.com/api/19dbfd7f85d444a8a8d77781fe324b7d/dishdata`)
+.get(`https://crudcrud.com/api/ad472ff541214d1db117a0e34d91634f/dishdata`)
 .then((res) => { 
   console.log(`!1 st time printing`);
   showOutput(res);
