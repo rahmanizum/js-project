@@ -3,10 +3,12 @@
 //Assigning elements to variables
 const form = document.querySelector(`#my-form`);
 const price = document.getElementById("price");
-const productName = document.getElementById("pname");
-const productTable = document.getElementById("ptable");
+const dish = document.getElementById("pname");
+const table = document.getElementById("ptable");
 const submitButton = document.getElementById(`submitbtn`)
-const tableBody = document.getElementById(`tablebody`);
+const table1 = document.getElementById(`tablebody1`);
+const table2 = document.getElementById(`tablebody2`);
+const table3 = document.getElementById(`tablebody3`);
 // const tablefootData = document.getElementById(`tablefootdata`);
 
 
@@ -14,26 +16,25 @@ const tableBody = document.getElementById(`tablebody`);
 async function onSubmit(e){
     e.preventDefault();
 //creating person object
-    const productdata = {
-        productPrice: price.value,
-        productName : productName.value ,
-        productTable : productTable.value,
+    const dishdata = {
+        dishPrice: price.value,
+        dishName : dish.value ,
+        tableNo : table.value,
     }
-    console.log(JSON.stringify(productdata));
+    console.log(JSON.stringify(dishdata));
 
 //add to server 
-// await axios.post(`https://crudcrud.com/api/4b781f11bd6f4f4bad1d439db6116eaa/productdata`, { productdata })
-await axios.post(`https://crudcrud.com/api/441ae0f9d5034bb69fbbbe97765a9e22/productdata`, { productdata })
+
+await axios.post(`https://crudcrud.com/api/19dbfd7f85d444a8a8d77781fe324b7d/dishdata`, { dishdata })
   .then((res) => {
-    console.log(`${res.data.productdata.productName} added`);
+    console.log(`${res.data.dishdata.dishName} added`);
     console.log(res);
   })
   .catch((err) => {
     console.error(err);
   });
   //print on browser by get 
-  // axios.get(`https://crudcrud.com/api/4b781f11bd6f4f4bad1d439db6116eaa/productdata`)
-  axios.get(`https://crudcrud.com/api/441ae0f9d5034bb69fbbbe97765a9e22/productdata`)
+  axios.get(`https://crudcrud.com/api/19dbfd7f85d444a8a8d77781fe324b7d/dishdata`)
   .then((res) => { 
     console.log(`data feched for printing`);
     showOutput(res);
@@ -50,41 +51,11 @@ function onEditorDelete(e){
     e.preventDefault();
     // get data from button
     const btnId = e.target.id;
-  //WHEN CLICK EDIT BUTTON
-if (e.target && e.target.classList.contains("editbtn")){
-    console.log(e.target);
-//get from server 
-axios
-.get(`https://crudcrud.com/api/4b781f11bd6f4f4bad1d439db6116eaa/productdata/${btnId}`)
-.then(res=>{
-    editing(res);
-    console.log(res);
-    console.log(`${res.data.productdata.productName} ready for editing`);
-})
-.catch(err=>console.error(err));
-
-//delete from server 
-axios
-.delete(`https://crudcrud.com/api/4b781f11bd6f4f4bad1d439db6116eaa/productdata/${btnId}`)
-.then(res=>console.log(`This id : ${btnId}  data deleted`))
-.catch(err=> console.error(err));
-
-//delete from browser
-e.target.parentElement.parentElement.remove();
-//replace values for editing 
-function editing(res){
-    const editProduct = res.data.productdata;
-    price.value= editProduct.productPrice;
-    productName.value = editProduct.productName;
-}
-// make ready total for updation 
-tablefootData.innerHTML = `Total Value worth of products : edit product to fetch total`
-}
 // WHEN CLICK DELETE BUTTON 
 if (e.target && e.target.classList.contains("delbtn")){
 //remove from server 
 axios
-.delete(`https://crudcrud.com/api/4b781f11bd6f4f4bad1d439db6116eaa/productdata/${btnId}`)
+.delete(`https://crudcrud.com/api/19dbfd7f85d444a8a8d77781fe324b7d/dishdata/${btnId}`)
 .then(res=>console.log(`This id : ${btnId} data deleted`))
 .catch(err=> console.error(err));
 //remove from browser
@@ -95,24 +66,19 @@ e.target.parentElement.parentElement.remove();
 
 // FUNCTION FOR ADDING TO BROWSER
 function showOutput(res){
-  let totalPrice = 0;
     console.log(res.data);
-    tableBody.innerHTML=tableBody.children[0].outerHTML;
+    table1.innerHTML=table1.children[0].outerHTML;
+    table2.innerHTML=table2.children[0].outerHTML;
+    table3.innerHTML=table3.children[0].outerHTML;
     res.data.forEach((ele,index) => {
-      totalPrice+= Number(ele.productdata.productPrice);
         const tr = document.createElement(`tr`);
-        tr.className = 'nowrap';
-        const val = ele.productdata;
+        const val = ele.dishdata;
         const userId = ele._id;
+        const tableId = ele.dishdata.tableNo;
         const txt = `
         <td>${index+1}</td>
-        <td>${val.productName}</td>
-        <td>${val.productPrice}</td>
-        <td>
-            <button class="btn btn-success editbtn" id = ${userId}>
-                edit
-            </button>
-        </td>
+        <td>${val.dishPrice}</td>
+        <td>${val.dishName}</td>
         <td>
             <button class="btn btn-danger delbtn" id = ${userId}>
                 delete
@@ -121,20 +87,25 @@ function showOutput(res){
         `;
         //appending details to table
         tr.innerHTML+=txt;
-        tableBody.appendChild(tr);   
+        //Choosing correct table
+        if(tableId === 'table1'){
+          table1.appendChild(tr);   
+        }
+        if(tableId === 'table2'){
+          table2.appendChild(tr);   
+        }
+        if(tableId === 'table3'){
+          table3.appendChild(tr);   
+        }
+        
     });
 
-    //updating the total value worth products 
-tablefootData.innerHTML = `Total Value worth of products : &#8377;${totalPrice}.00`
-        // reinitiate to blank
-        price.value = '';
-        productName.value = '';
-}
+  }
 
 // PRINTING DATA WHEN CUSTOMER OPEN WEBSITE
 axios
-// .get(`https://crudcrud.com/api/4b781f11bd6f4f4bad1d439db6116eaa/productdata`)
-.get(`https://crudcrud.com/api/441ae0f9d5034bb69fbbbe97765a9e22/productdata`)
+
+.get(`https://crudcrud.com/api/19dbfd7f85d444a8a8d77781fe324b7d/dishdata`)
 .then((res) => { 
   console.log(`!1 st time printing`);
   showOutput(res);
@@ -145,6 +116,11 @@ axios
 });
 
 // Event listeners
+console.log(table1);
+console.log(table2);
+console.log(table3);
 
 submitButton.addEventListener('click',onSubmit);
-tableBody.addEventListener('click',onEditorDelete);
+table1.addEventListener('click',onEditorDelete);
+table2.addEventListener('click',onEditorDelete);
+table3.addEventListener('click',onEditorDelete);
