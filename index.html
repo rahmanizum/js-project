@@ -11,20 +11,20 @@
 <body>
 <div class="container-fluid">
     <div class="container-sm border border-3 border-black rounded-2 p-3 mt-5 mb-5 bg-white">
-        <div class="text-center text-bg-dark pt-2 rounded-3">
-            <h2 >Add your product to list</h2>
-            <p class="text-decoration-underline fw-light fst-italic">Copyright &copy; Mufil Rahman A</p>
+        <div class="text-center text-bg-danger pt-2 rounded-2">
+            <h2 >Orbis Restaurent Order Tracker </h2>
+            <p class="text-decoration-underline fw-light fst-italic text-black pb-1">Copyright &copy; Mufil Rahman A</p>
         </div>
         
        
-        <p class="text-center">Add your product to list and see the total cart value</p> <hr>
+        <p class="text-center">Add orders to list to track and delete once order served </p> <hr>
         <form action="#" id="my-form">
-    <label for="price" class="form-label">Choose Price:</label>
-    <input type="number" class="form-control" id="price" required>
-    <label for="pname" class="form-label">Choose Dish:</label>
-    <input type="pname" class="form-control" id="pname" required>
-    <label for="ptable" class="form-label">Choose A Table:</label>
-    <select id="ptable" class="form-control">
+            <label for="pname" class="form-label">Enter Dish:</label>
+            <input type="text" class="form-control" id="pname" required>
+            <label for="price" class="form-label">Enter Price:</label>
+            <input type="number" class="form-control" id="price" required>
+            <label for="ptable" class="form-label">Choose A Table:</label>
+            <select id="ptable" class="form-control">
         <option value="table1">Table 1</option>
         <option value="table2">Table 2</option>
         <option value="table3">Table 3</option>
@@ -33,22 +33,22 @@
         </form>
     
        </div> 
-<div class="container table-responsive">
-    <table class="table" id="table1">
+<div class="container table-responsive text-bg-secondary bg-opacity-25 mb-5 border border-3 ">
+    <table class="table table-info" id="table1">
+        <h3 class="text-center fst-italic pt-3 text-black">Table 1</h3>
         <thead class="thead-dark">
             <tr class="nowrap">
                 <th>#</th>
-                <th>Price</th>
                 <th>Dish</th>
-                
-                <th>Delete</th>
+                <th>Price</th>
+                <th>Status</th>
             </tr>
         </thead>
         <tbody class="nowrap"  id="tablebody1">
             <tr>
                 <!-- <td>0</td>
-                <td>pricedemo</td>
                 <td>dishdemo</td>
+                <td>pricedemo</td>
                 
                 <td>
                     <button class="btn btn-danger delbtn">
@@ -59,22 +59,21 @@
 
         </tbody>
     </table>
-    <table class="table" id="table2">
+    <table class="table table-info" id="table2">
+        <h3 class="text-center fst-italic text-black">Table2</h3>
         <thead class="thead-dark">
             <tr class="nowrap">
                 <th>#</th>
-                <th>Price</th>
                 <th>Dish</th>
-                
-                <th>Delete</th>
+                <th>Price</th>
+                <th>Status</th>
             </tr>
         </thead>
         <tbody class="nowrap"  id="tablebody2">
             <tr>
                 <!-- <td>0</td>
-                <td>pricedemo</td>
                 <td>dishdemo</td>
-               
+                <td>pricedemo</td>
                 <td>
                     <button class="btn btn-danger delbtn">
                         delete
@@ -84,21 +83,21 @@
 
         </tbody>
     </table>
-    <table class="table" id="table3">
+    <table class="table table-info" id="table3">
+        <h3 class="text-center fst-italic text-black">Table3</h3>
         <thead class="thead-dark">
             <tr class="nowrap">
                 <th>#</th>
-                <th>Price</th>
                 <th>Dish</th>
-                
-                <th>Delete</th>
+                <th>Price</th>
+                <th>Status</th>
             </tr>
         </thead>
         <tbody class="nowrap"  id="tablebody3">
             <tr>
                 <!-- <td>0</td>
-                <td>pricedemo</td>
                 <td>dishdemo</td>
+                <td>pricedemo</td>
                 
                 <td>
                     <button class="btn btn-danger delbtn">

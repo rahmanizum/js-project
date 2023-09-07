@@ -6,7 +6,7 @@ body{
     padding: 30 ;
 }
 form input[type="submit"]{
-    background-color: tomato;
+    background-color: rgb(87, 240, 89);
 }
 .nowrap{
     white-space: nowrap;

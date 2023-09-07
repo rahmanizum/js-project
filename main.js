@@ -77,8 +77,8 @@ function showOutput(res){
         const tableId = ele.dishdata.tableNo;
         const txt = `
         <td>${index+1}</td>
-        <td>${val.dishPrice}</td>
         <td>${val.dishName}</td>
+        <td>${val.dishPrice}</td>
         <td>
             <button class="btn btn-danger delbtn" id = ${userId}>
                 delete
@@ -97,6 +97,11 @@ function showOutput(res){
         if(tableId === 'table3'){
           table3.appendChild(tr);   
         }
+
+        //back to empty 
+        price.value = ``;
+        dish.value = ``;
+        table.value =`Choose...`;
         
     });
 
